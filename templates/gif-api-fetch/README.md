@@ -1,6 +1,6 @@
 # <%= projectName %>
 
-This is a React App with project with API consume features. We must change and add new features to complete our requisites
+This is a React App with Counter features. We must change and add new features to complete our requisites
 
 ## Instrutions to start
 
@@ -18,5 +18,6 @@ npm start
 Execute project code testing
 
 ```
-npm start
+npm run test
 ```
+
