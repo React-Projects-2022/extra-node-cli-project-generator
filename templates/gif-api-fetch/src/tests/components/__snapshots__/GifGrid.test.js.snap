@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en GifGrid De de mostrar que está cargando 1`] = `
+<Fragment>
+  <h3>
+    angular
+  </h3>
+  <div
+    className="card-grid"
+  >
+    <p>
+      Cargando imágenes 
+      angular
+    </p>
+  </div>
+</Fragment>
+`;
+
+exports[`Pruebas en GifGrid Debe de mostrar items cuando se cargan imágenes con useFetchGifs 1`] = `
+<Fragment>
+  <h3>
+    angular
+  </h3>
+  <div
+    className="card-grid"
+  >
+    <GifGridItem
+      img={
+        Object {
+          "id": "sjsjs",
+          "title": "Gif angular",
+          "url": "https://localhost/image/01.jpg",
+        }
+      }
+      key="sjsjs"
+    />
+    <GifGridItem
+      img={
+        Object {
+          "id": "sjsjs2",
+          "title": "Gif angular 2",
+          "url": "https://localhost/image/02.jpg",
+        }
+      }
+      key="sjsjs2"
+    />
+  </div>
+</Fragment>
+`;
