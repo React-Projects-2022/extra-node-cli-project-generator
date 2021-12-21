@@ -19,27 +19,27 @@ const QUESTIONS = [
     {
         name: 'template',
         type: 'list',
-        message: '¿Qué tipo de proyecto quieres generar?',
+        message: 'What type of project do you want to generate??',
         choices: TEMPLATE_OPTIONS
     },
     {
         name: 'proyecto',
         type: 'input',
-        message: '¿Cuál es el nombre del proyecto?',
+        message: 'What is the name of the project?',
         validate: function(input) {
             if(/^([a-z@]{1}[a-z\-\.\\\/0-9]{0,213})+$/.test(input)) {
                 return true;
             }
-            return 'El nombre del proyecto solo puede tener 214 carácteres y tiene que empezar en minúsculas o con una arroba';
+            return 'The project name can only be 214 characters long and has to start in lowercase or with an at sign.';
         }
     }
 ];
 
 // console.log(QUESTIONS);
 const DIR_ACTUAL = process.cwd();
-inquirer.prompt(QUESTIONS).then(respuestas => {
-    const template = respuestas['template'];
-    const proyecto = respuestas['proyecto'];
+inquirer.prompt(QUESTIONS).then(answers => {
+    const template = answers['template'];
+    const proyecto = answers['proyecto'];
 
     const templatePath = path.join(__dirname, 'templates', template);
     const pathTarget = path.join(DIR_ACTUAL, proyecto);
@@ -50,17 +50,17 @@ inquirer.prompt(QUESTIONS).then(respuestas => {
     postProccess(templatePath, pathTarget);
 });
 
-function createProject(projectPath) {
+const createProject = (projectPath) => {
     // Comprobar que no existe el directorio
     if(fs.existsSync(projectPath)) {
-        console.log(chalk.red('No puedes crear el proyecto porque ya existe, intenta con otro'));
+        console.log(chalk.red('You cannot create the project because it already exists, try another'));
         return false;
     }
     fs.mkdirSync(projectPath);
     return true;
 }
 
-function createDirectoriesFilesContent(templatePath, projectName) {
+const createDirectoriesFilesContent = (templatePath, projectName) => {
     const listFileDirectories = fs.readdirSync(templatePath);
 
     listFileDirectories.forEach( item => {
@@ -85,12 +85,12 @@ function createDirectoriesFilesContent(templatePath, projectName) {
     })
 }
 
-function postProccess(templatePath, targetPath) {
+const postProccess = (templatePath, targetPath) => {
     const isNode = fs.existsSync(path.join(templatePath, 'package.json'));
     
     if (isNode) {
         shell.cd(targetPath);
-        console.log(chalk.green(`Instalando las dependencias en ${targetPath}`));
+        console.log(chalk.green(`Dependencies installed in: ${targetPath}`));
         const result = shell.exec('npm install');
         if (result.code != 0) {
             return false;
