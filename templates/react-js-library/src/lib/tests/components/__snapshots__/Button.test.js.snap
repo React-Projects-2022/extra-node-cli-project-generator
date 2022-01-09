@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pruebas en Button Debe de mostrar <Button /> correctamente 1`] = `
+<button
+  className="btn btn-primary"
+  onClick={[Function]}
+  type="button"
+>
+  Details
+</button>
+`;
